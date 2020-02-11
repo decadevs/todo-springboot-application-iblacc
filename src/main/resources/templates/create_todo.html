@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Todo Application</title>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="my-5">Todo Application</h1>
+    <h2>Create New Todo</h2>
+    <br>
+    <form action="#" th:action="@{/todo/add}" th:object="${todo}" method="post">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" th:field="*{title}" class="form-control" id="title">
+        </div>
+        <div class="form-group">
+            <label for="desc">Description</label>
+            <textarea th:field="*{description}" class="form-control" id="desc" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+    <div class="mt-5">
+        <a href="/">Home</a>
+    </div>
+</div>
+</body>
+</html>

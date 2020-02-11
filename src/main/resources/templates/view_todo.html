@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Todo Application</title>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="my-5">Todo Application</h1>
+    <div class="card text-center" th:object="${todo}">
+        <h6 class="card-header" th:text="*{category}">Category</h6>
+        <div class="card-body">
+            <h4 class="card-title" th:text="*{title}">Title</h4>
+            <p class="card-text" th:text="*{description}">Description</p>
+            <br>
+            <hr>
+
+            <span class="mr-3" th:text="${todo.category == T(com.laylasahara.todoapp.model.Category).PENDING} ? 'Move todo to' :
+                (${todo.category == T(com.laylasahara.todoapp.model.Category).INPROGRESS} ? 'Have you completed it?' : 'Restart todo all over again?')
+            ">Direction</span>
+            <a th:href="@{'/todo/next/' + ${id}}" class="btn btn-primary" th:text="${todo.category == T(com.laylasahara.todoapp.model.Category).PENDING} ? 'In Progress' :
+                (${todo.category == T(com.laylasahara.todoapp.model.Category).INPROGRESS} ? 'Done' : 'Affirmative?')">Button</a>
+        </div>
+        <div class="card-footer text-muted d-flex justify-content-between">
+            <div>
+                Created: <span th:text="*{createdAt}">CreatedAt</span>
+            </div>
+            <div>
+                Status: <span th:text="*{status} ? 'Complete' : 'Incomplete'">Status</span>
+            </div>
+        </div>
+    </div>
+    <div class="mt-5">
+        <a href="/">Home</a>
+    </div>
+</div>
+</body>
+</html>
+
